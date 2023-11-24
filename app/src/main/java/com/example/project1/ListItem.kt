@@ -9,6 +9,7 @@ import com.example.project1.databinding.ActivityListItemBinding
 import com.google.firebase.Firebase
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.auth
+import com.google.firebase.firestore.DocumentReference
 import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.firestore.firestore
 
@@ -18,30 +19,48 @@ class ListItem : AppCompatActivity() {
     private val db: FirebaseFirestore = Firebase.firestore
     private lateinit var auth: FirebaseAuth
     private val itemsCollectionRef = db.collection("Item") // items는 Collection ID
-    private val usersCollectionRef = db.collection("user").document("user")
-    private lateinit var nickname : String
+//    private val usersCollectionRef = db.collection("user").document("user")
+private lateinit var usersCollectionRef: DocumentReference
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
         binding = ActivityListItemBinding.inflate(layoutInflater)
         setContentView(binding.root)
-        auth = Firebase.auth //authentication
+        auth = FirebaseAuth.getInstance()
+        usersCollectionRef = db.collection("user").document(auth.currentUser?.uid.toString())
 
         val docid =intent.getStringExtra("DocId")
-        nickname=""
 
         Log.d("DocumentCheck",docid.toString())
 
         val title = intent.getStringExtra("listTitle")
         val content = intent.getStringExtra("listContents")
         val price = intent.getStringExtra("listPrice")
+        val sellerid = intent.getStringExtra("ID")
 
 
 
         binding.detailTitle.text=title
         binding.price.text=price +"원"
         binding.detailContent.text=content
-        binding.SellerNameTv.text= auth.currentUser?.email
+        binding.SellerNameTv.text = sellerid
+
+
+//        usersCollectionRef.get().addOnSuccessListener {
+//                document ->
+//            if (document.exists()) {
+//                val idValue = document.getString("ID")
+//                binding.SellerNameTv.text=idValue
+//                Log.d("Firestore", "ID value: $idValue")
+//            } else {
+//                Log.d("Firestore", "No such document")
+//            }
+//        }.addOnFailureListener { exception ->
+//            Log.d("Firestore", "get failed with ", exception)
+//
+//
+//        }
 
 
 
