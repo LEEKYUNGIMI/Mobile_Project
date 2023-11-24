@@ -9,9 +9,6 @@ import androidx.recyclerview.widget.RecyclerView
 import com.google.firebase.firestore.QueryDocumentSnapshot
 
 
-
-
-
 class ContentsRVAdapter(val items: MutableList<ContentModel>) : RecyclerView.Adapter<ContentsRVAdapter.ViewHolder>() {
 
 

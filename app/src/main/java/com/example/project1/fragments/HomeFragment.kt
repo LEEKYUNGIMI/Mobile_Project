@@ -192,15 +192,21 @@ class HomeFragment : Fragment() {
 
                 selectedItemID = items[position].documentID
 
-                val intent = if(Firebase.auth.currentUser?.uid== items[position].uid)
+                val intent = if(Firebase.auth.currentUser?.uid== items[position].uid){
+
                     Intent(context,ListItem::class.java)
-                else
+                }
+                else{
                     Intent(context, ListItemNo::class.java)
+                }
+
+
                 intent.putExtra("listTitle",items[position].listTitle)
                 intent.putExtra("listContents",items[position].listContents)
                 intent.putExtra("listPrice",items[position].listPrice)
                 intent.putExtra("DocId",selectedItemID) //docid를 listitem.activity로 보내서. listitem에서도 받은 intent 정보를 edit에다가 보냄.
                 intent.putExtra("uid",items[position].uid)
+                intent.putExtra("ID",items[position].id) //사용자 이메일 보내서
                 Log.d("doccheck",selectedItemID.toString())
 
 
