@@ -21,7 +21,7 @@ class ListItemNo : AppCompatActivity() {
     private lateinit var auth: FirebaseAuth
     private val itemsCollectionRef = db.collection("Item") // items는 Collection ID
 //    private val usersCollectionRef = db.collection("user").document(auth.currentUser?.uid.toString())
-private lateinit var usersCollectionRef: DocumentReference
+    private lateinit var usersCollectionRef: DocumentReference
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -42,6 +42,7 @@ private lateinit var usersCollectionRef: DocumentReference
         val content = intent.getStringExtra("listContents")
         val price = intent.getStringExtra("listPrice")
         val sellerid = intent.getStringExtra("ID")
+        val uid = intent.getStringExtra("uid")
 
 
 
@@ -66,9 +67,18 @@ private lateinit var usersCollectionRef: DocumentReference
 //
 //        }
 
+        //채팅 버튼 클릭시, 판매자에게 채팅 보낼 액티비티인 ChatActivity로 이동.
+        binding.Chatbutton.setOnClickListener {
+            val intent = Intent(this,ChatActivity::class.java)
+            intent.putExtra("receiverId",uid)
+            intent.putExtra("sellerName",sellerid)
+            //여기서 판매자의 정보를 보내야함. 판매자의 uid를 보내서.chatactivity에서 받아서,
+            startActivity(intent)
+            finish()
+        }
 
 
-
+        //백 버튼 누르기
         binding.backButton.setOnClickListener {
             val intent = Intent(this,MainActivity::class.java)
             startActivity(intent)

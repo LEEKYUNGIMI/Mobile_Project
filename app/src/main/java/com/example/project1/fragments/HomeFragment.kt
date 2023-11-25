@@ -30,12 +30,12 @@ import com.google.firebase.firestore.firestore
 
 
 class HomeFragment : Fragment() {
-    private var adapter: ContentsRVAdapter? = null
+//    private var adapter: ContentsRVAdapter? = null
 
     private val db: FirebaseFirestore = Firebase.firestore
     private val itemsCollectionRef = db.collection("Item") // items는 Collection ID
     lateinit var binding: FragmentHomeBinding
-    private lateinit var rvAdapter: ContentsRVAdapter
+//    private lateinit var rvAdapter: ContentsRVAdapter
     private var selectedItemID: String? = null
     private val allItems = mutableListOf<ContentModel>() // 전체 상품 아이템 리스트
 
