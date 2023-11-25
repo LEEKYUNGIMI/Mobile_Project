@@ -12,18 +12,23 @@ import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.auth
 import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.firestore.firestore
+import com.google.firebase.storage.FirebaseStorage
+import com.google.firebase.storage.storage
 
 class AddListActivity : AppCompatActivity() { //새로운 상품 등록.
+    private lateinit var storage: FirebaseStorage
     private val db: FirebaseFirestore = Firebase.firestore
     lateinit var binding : ActivityAddListBinding
     private val itemsCollectionRef = db.collection("Item") // items는 Collection ID
     private lateinit var auth: FirebaseAuth
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityAddListBinding.inflate(layoutInflater)
         setContentView(binding.root)
         auth = Firebase.auth
+        storage = Firebase.storage
 
         val spinner = binding.spinnerStatus.selectedItem.toString()
 

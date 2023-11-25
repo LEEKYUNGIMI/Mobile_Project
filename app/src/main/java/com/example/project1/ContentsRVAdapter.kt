@@ -13,10 +13,13 @@ class ContentsRVAdapter(val items: MutableList<ContentModel>) : RecyclerView.Ada
 
 
 
-    interface ItemClick{
+    interface ItemClick{  //아이템 클릭 이벤트 정의
         fun onClick(view: View, position: Int)
     }
+
     var itemClick : ItemClick? = null
+
+    //새로운 ViewHolder 객체를 생성
     override fun onCreateViewHolder(
         parent: ViewGroup,
         viewType: Int
@@ -24,6 +27,7 @@ class ContentsRVAdapter(val items: MutableList<ContentModel>) : RecyclerView.Ada
         val v = LayoutInflater.from(parent.context).inflate(R.layout.contents_item_rv,parent,false)
         return ViewHolder(v)
     }
+     //RecyclerView에서 각 아이템에 대한 데이터를 뷰에 바인딩
     override fun onBindViewHolder(holder: ContentsRVAdapter.ViewHolder, position: Int) {
         if(itemClick!=null){
             holder.itemView.setOnClickListener{v->
