@@ -1,6 +1,7 @@
 package com.example.project1
 
 data class ChatModel(
-    val senderId : String="",
-    val ChatContent : String=""
+    val MessageSenderEmail : String="",
+    val ChatContent : String="",
+    val what : String=""
 )

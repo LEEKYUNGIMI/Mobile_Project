@@ -36,6 +36,8 @@ class ChatActivity : AppCompatActivity() {
             val chattext = binding.ChatText.text.toString()
             val receiveruid = intent.getStringExtra("receiverId") //해당 글 작성자의 uid
             val uid = intent.getStringExtra("sellerName")
+            val what = intent.getStringExtra("what")
+            val MessageSenderEmail = intent.getStringExtra("MessageSenderEmail") //메시지 보내는 사람 이메일.
 
 
             val Message = hashMapOf(
@@ -60,16 +62,6 @@ class ChatActivity : AppCompatActivity() {
             startActivity(intent)
             finish()
         }
-
-
-
-
-
-
-
-
-
-
 
     }
 }
